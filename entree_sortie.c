@@ -16,7 +16,7 @@ char ReadChar(FILE *f){
 void Skip(FILE *f) {
 
   char c ;
-  
+
   while (isspace(c=getc(f))) ;
   ungetc(c,f) ;
 
@@ -26,7 +26,7 @@ void Skip(FILE *f) {
 
 void SkipLine(FILE *f){
   char c ;
-  
+
   do
     c = getc(f) ;
   while ((c!=EOF)&&(c!='\n')) ;
@@ -45,7 +45,7 @@ void GetChaine(FILE *f,int taille_max,char *s)
   c = getc(f) ;
   while (!(isspace(c))&&(c!=EOF)&&(c!='\n')&&(i<taille_max-1)){
     s[i]=c;
-    c = getc(f) ;    
+    c = getc(f) ;
     i++;
   }
   s[i]='\0';
@@ -54,7 +54,7 @@ void GetChaine(FILE *f,int taille_max,char *s)
 
 /* LECTURE ET TRANSFORMATION DE CARACTERES EN ENTIERS */
 
-int GetEntier(f) 
+int GetEntier(f)
 FILE *f ;
   {
   char c ;
@@ -78,7 +78,7 @@ FILE *f ;
   if (sign)
     v = -1*v ;
   ungetc(c,f) ;
-  return v ; 
+  return v ;
   }
 
 /* LECTURE ET TRANSFORMATION DE CARACTERES EN ENTIERS REELS */
@@ -101,36 +101,33 @@ FILE *f;
   }
   puiss=0;entrer=0;
   while (isdigit(c)){
-    
+
   if(entrer)
     {
      v1=10*v1 + (c - '0');
      c = getc(f);
      puiss++;
-    
+
     }
   else
-    {    
+    {
      v = 10*v + (c - '0');
      c = getc(f);
-    } 
+    }
   if(c=='.') {
-              c=getc(f); 
+              c=getc(f);
               entrer=1;
-             } 
+             }
   }
   nbr=v1;
-  
+
   for(i=0;i<puiss;i++)
    nbr=nbr/10;
- 
-   nbr=nbr+v;  
+
+   nbr=nbr+v;
    if (sign)
     nbr = -1*nbr;
 
   ungetc(c, f);
   return nbr;
 }
-
-
-
