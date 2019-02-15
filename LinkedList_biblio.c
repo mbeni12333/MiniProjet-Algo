@@ -1,4 +1,5 @@
 #include "LinkedList_biblio.h"
+
 #define TMP_MAX_LENGTH 256
 #define TITRE_MAX_LENGTH  100
 #define AUTEUR_MAX_LENGTH 100
@@ -35,7 +36,7 @@ void ajouter_elem(LinkedList_biblio* Biblio,
   if(liste_vide(Biblio)){
     Biblio->head = nouv;
   }else{
-    nouv = Biblio->head;// on garde l'ancienne tete
+    nouv->suiv = Biblio->head;// on garde l'ancienne tete
     Biblio->head = nouv;
   }
   Biblio->nbliv += 1; // on incremente le compteur de livres
@@ -68,9 +69,8 @@ void lecture_n_entree(char* nomfic, int n, LinkedList_biblio *B){
             return;
         }else{
            ajouter_elem(B, tmp_num, tmp_titre, tmp_auteur);
+           cpt++;
         }
-
-
     }
 
 }
@@ -80,8 +80,8 @@ void afficher_liste(LinkedList_biblio* B){
     
     //on initialise le pointeur a la tete
     s_livre* tmp = B->head;
-
-    printf("La liste contient : %d livres\n", B->nbliv);
+    printf("\n\n\n");
+    printf("La liste contient : %d livres\n\n", B->nbliv);
     // tan que la liste n'est pas fini
     while(tmp != NULL){
         // on affiche le livre
@@ -90,6 +90,9 @@ void afficher_liste(LinkedList_biblio* B){
         tmp = tmp->suiv;
     }
 
-    printf("Fin de l'affichage de la liste\n");
+    printf("\nFin de l'affichage de la liste\n\n\n");
 
 }
+s_livre* recherche_par_num(LinkedList_biblio* B, int num){return NULL;}
+s_livre* recherche_par_titre(LinkedList_biblio* B, char* titre){return NULL;}
+s_livre* recherche_par_auteur(LinkedList_biblio* B, char* auteur){return NULL;}

@@ -20,6 +20,8 @@ void ajouter_elem(LinkedList_biblio* Biblio,
 
 void lecture_n_entree(char* nomfic, int n, LinkedList_biblio *B);
 
-
+s_livre* recherche_par_num(LinkedList_biblio* B, int num);
+s_livre* recherche_par_titre(LinkedList_biblio* B, char* titre);
+s_livre* recherche_par_auteur(LinkedList_biblio* B, char* auteur);
 
 #endif

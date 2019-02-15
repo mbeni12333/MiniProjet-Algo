@@ -2,19 +2,36 @@
 #include <stdlib.h>
 #include "entree_sortie.h"
 #include "LinkedList_biblio.h"
-#include "structs.h"
+
 
 void menu(){
-  printf("Veuillez choisir une option : \n");
+
   printf("\t1-Lire n lignes fichier\n");
   printf("\t2-Afficher la liste\n");
   printf("\t3-Rechercher un ouvrage par son num\n");
   printf("\t4-Rechercher un ouvrage par son titre\n");
   printf("\t5-Rechercher un ouvrage par son auteur\n");
-  printf("\t6-Inserer un nouvel ouvrage\n");
+  printf("\t6-Inserer un nouvel ouvrage\n\n");
+  printf("\tVeuillez choisir une option : ");
 }
 
+void run_tests(char* logFile){
+  /*
+    outputs a file containing n collumns 
+    1- taille de l'entree
+    2- temps de creation 
+    3- moyenne(recherche par num alleatoire)
+    4- moyenne(recherche par titre)
+    5- moyenne(recherche par auteur)
+    6- espace memoire
+    
 
+    for the purpous of the test, we will read the full doc
+    then limit the list by a counter so that we don't read the whole 
+    doc everytime
+  
+  */
+}
 int main(int argc, char** argv){
   /*
     argc contient le nombre de parametres
@@ -40,25 +57,28 @@ int main(int argc, char** argv){
   nomfic = strdup(argv[1]);// on copie le nom du ficher
   nlignes = atoi(argv[2]);// on recupere le nb lignes voulu
 
-  printf("Lecture...\nnomfichier : %s , nlignes : %d\n", nomfic, nlignes);
-  lecture_n_entree(nomfic, nlignes, B);
+
 
   do{
     menu();// on afficher le menu
     scanf(" %d", &ch);// on lit le choix de l'utilisateur
 
     switch(ch){
-      case 1:// Lire n lignes
+      case 0:  printf("Au revoir!\n");
+        break; 
+      case 1:  printf("Lecture...\nnomfichier : %s , nlignes : %d\n", nomfic, nlignes);
+               lecture_n_entree(nomfic, nlignes, B);// Lire n lignes
         break;
-      case 2:// Affichage liste
+      case 2:  afficher_liste(B);// Affichage liste
         break;
-      case 3:// Recherche par num
+      case 3:  recherche_par_num(B, 4);// Recherche par num
         break;
-      case 4:// Recherche par titre
+      case 4:  recherche_par_titre(B, "titre");// Recherche par titre
         break;
-      case 5:// Recherche par auteur
+      case 5:  recherche_par_auteur(B, "auteur");// Recherche par auteur
         break;
-      case 6:// Insertion element
+      case 6: //Insert_element(B);// Insertion element
+      case 7: run_tests("LinkedList.log");// run tests
         break;
       default:
         printf("\nErreur: entrez un choix valide\n");
@@ -68,6 +88,8 @@ int main(int argc, char** argv){
   }while(ch != 0);
 
 
-  printf("Au revoir!\n");
+
+
+
   return 0;
 }
