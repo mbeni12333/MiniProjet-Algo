@@ -53,7 +53,7 @@ int main(int argc, char** argv){
   }
 
 
-
+  s_livre* tmp;
   nomfic = strdup(argv[1]);// on copie le nom du ficher
   nlignes = atoi(argv[2]);// on recupere le nb lignes voulu
 
@@ -71,11 +71,19 @@ int main(int argc, char** argv){
         break;
       case 2:  afficher_liste(B);// Affichage liste
         break;
-      case 3:  recherche_par_num(B, 4);// Recherche par num
+      case 3:  ;
+                 tmp= recherche_par_num(B, 4);
+                if(tmp)
+                  afficher_livre(tmp);
+                 // Recherche par num
         break;
-      case 4:  recherche_par_titre(B, "titre");// Recherche par titre
+      case 4:  ;tmp = recherche_par_titre(B, "UKWAGM");
+                if(tmp)
+                  afficher_livre(tmp);// Recherche par titre
         break;
-      case 5:  recherche_par_auteur(B, "auteur");// Recherche par auteur
+      case 5:  ;tmp = recherche_par_auteur(B, "gspqoqm");
+                if(tmp)
+                  afficher_livre(tmp);// Recherche par auteur
         break;
       case 6: //Insert_element(B);// Insertion element
       case 7: run_tests("LinkedList.log");// run tests

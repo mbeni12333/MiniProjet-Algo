@@ -18,3 +18,6 @@ s_livre* creer_livre(int num, char* titre, char* auteur){
 
   return nouv;
 }
+void afficher_livre(s_livre* l){
+   printf("le livre cherché est : %d %s %s\n", l->num, l->titre, l->auteur);
+}

@@ -20,5 +20,5 @@ typedef struct livre{
 
 
 s_livre* creer_livre(int num, char* titre, char* auteur);
-
+void afficher_livre(s_livre* l);
 #endif

@@ -93,6 +93,71 @@ void afficher_liste(LinkedList_biblio* B){
     printf("\nFin de l'affichage de la liste\n\n\n");
 
 }
-s_livre* recherche_par_num(LinkedList_biblio* B, int num){return NULL;}
-s_livre* recherche_par_titre(LinkedList_biblio* B, char* titre){return NULL;}
-s_livre* recherche_par_auteur(LinkedList_biblio* B, char* auteur){return NULL;}
+s_livre* recherche_par_num(LinkedList_biblio* B, int num){
+    /*
+        cette fonction permet de chercher un livre par son num
+    */    
+    if(!B){
+        fprintf(stderr, "\nErreur il faut initialsé la bibliotheque");
+        return NULL;
+    }
+    s_livre* temp = B->head;
+
+    if(!temp){
+        // l'element n'xiste pas dans la liste
+        return NULL;
+    }
+    while(temp){
+        if(temp->num == num){
+            // on a retrouvé l'element , on sort
+            return temp;
+        }
+        temp = temp->suiv;
+    }
+
+    return NULL;
+}
+s_livre* recherche_par_titre(LinkedList_biblio* B, char* titre){/*
+        cette fonction permet de chercher un livre par son num
+    */    
+    if(!B){
+        fprintf(stderr, "\nErreur il faut initialsé la bibliotheque");
+        return NULL;
+    }
+    s_livre* temp = B->head;
+
+    if(!temp){
+        // l'element n'xiste pas dans la liste
+        return NULL;
+    }
+    while(temp){
+        if(!strcmp(temp->titre ,titre)){
+            // on a retrouvé l'element , on sort
+            return temp;
+        }
+        temp = temp->suiv;
+    }
+
+    return NULL;}
+s_livre* recherche_par_auteur(LinkedList_biblio* B, char* auteur){/*
+        cette fonction permet de chercher un livre par son num
+    */    
+    if(!B){
+        fprintf(stderr, "\nErreur il faut initialsé la bibliotheque");
+        return NULL;
+    }
+    s_livre* temp = B->head;
+
+    if(!temp){
+        // l'element n'xiste pas dans la liste
+        return NULL;
+    }
+    while(temp){
+        if(!strcmp(temp->auteur , auteur)){
+            // on a retrouvé l'element , on sort
+            return temp;
+        }
+        temp = temp->suiv;
+    }
+
+    return NULL;}
