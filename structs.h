@@ -1,3 +1,7 @@
+
+#ifndef _STRUCTS_H_
+#define _STRUCTS_H_
+
 typedef struct livre{
 
   int num;
@@ -7,13 +11,13 @@ typedef struct livre{
 
 }s_livre;
 
-typedef struct LinkedList_biblio{
 
-  s_livre *Head;
-  int nbliv;
 
-}LinkedList_biblio;
+/*typedef struct HashMap_biblio{
 
-typedef struct HashMap_biblio{
+}HashMap_biblio;*/
 
-}HashMap_biblio;
+
+s_livre* creer_livre(int num, char* titre, char* auteur);
+
+#endif

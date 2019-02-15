@@ -4,16 +4,19 @@ EXEC=MiniProjet
 
 all: $(EXEC)
 
-MiniProjet: LinkedList_biblio.o main.o entree_sortie.o
+MiniProjet: LinkedList_biblio.o main.o entree_sortie.o structs.o
 	gcc -o MiniProjet LinkedList_biblio.o main.o entree_sortie.o
 
-main.o: main.c LinkedList_biblio.h entree_sortie.h
+main.o: main.c LinkedList_biblio.h entree_sortie.h structs.h
 	gcc -o main.o -c main.c $(CFLAGS)
 
-LinkedList_biblio.o: LinkedList_biblio.c 
+structs.o: structs.c structs.h
+	gcc -o structs.o -c structs.c $(CFLAGS)
+
+LinkedList_biblio.o: LinkedList_biblio.c structs.h
 	gcc -o LinkedList_biblio.o -c LinkedList_biblio.c $(CFLAGS)
 
-entree_sortie.o: entree_sortie.c
+entree_sortie.o: entree_sortie.c entree_sortie.h
 	gcc -o entree_sortie.o -c entree_sortie.c $(CFLAGS)
 
 clean:
