@@ -5,7 +5,7 @@ EXEC=MiniProjet
 all: $(EXEC)
 
 MiniProjet: LinkedList_biblio.o main.o entree_sortie.o structs.o
-	gcc -o MiniProjet LinkedList_biblio.o main.o entree_sortie.o
+	gcc -o MiniProjet LinkedList_biblio.o main.o entree_sortie.o structs.o
 
 main.o: main.c LinkedList_biblio.h entree_sortie.h structs.h
 	gcc -o main.o -c main.c $(CFLAGS)
