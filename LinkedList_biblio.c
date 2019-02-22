@@ -1,8 +1,6 @@
 #include "LinkedList_biblio.h"
 
-#define TMP_MAX_LENGTH 256
-#define TITRE_MAX_LENGTH  100
-#define AUTEUR_MAX_LENGTH 100
+
 
 
 
@@ -26,7 +24,7 @@ int liste_vide(LinkedList_biblio* Biblio){
 }
 
 
-void ajouter_elem(LinkedList_biblio* Biblio,
+void ajouter_elem_list(LinkedList_biblio* Biblio,
            int num,char* titre, char* auteur){
   // cette fonction ajoute un element au debut de la liste
   
@@ -43,7 +41,7 @@ void ajouter_elem(LinkedList_biblio* Biblio,
 
 }
 
-void lecture_n_entree(char* nomfic, int n, LinkedList_biblio *B){
+void lecture_n_entree_list(char* nomfic, int n, LinkedList_biblio *B){
     // cette fonction lit dans un fichier nomfic
     // n lignes contenant des info de livre (num, titre, auteur)
     
@@ -68,10 +66,11 @@ void lecture_n_entree(char* nomfic, int n, LinkedList_biblio *B){
             fprintf(stderr, "Erreur de Format\n");
             return;
         }else{
-           ajouter_elem(B, tmp_num, tmp_titre, tmp_auteur);
+           ajouter_elem_list(B, tmp_num, tmp_titre, tmp_auteur);
            cpt++;
         }
     }
+    fclose(f);
 
 }
 
@@ -80,7 +79,6 @@ void afficher_liste(LinkedList_biblio* B){
     
     //on initialise le pointeur a la tete
     s_livre* tmp = B->head;
-    printf("\n\n\n");
     printf("La liste contient : %d livres\n\n", B->nbliv);
     // tan que la liste n'est pas fini
     while(tmp != NULL){
@@ -90,10 +88,10 @@ void afficher_liste(LinkedList_biblio* B){
         tmp = tmp->suiv;
     }
 
-    printf("\nFin de l'affichage de la liste\n\n\n");
+    //printf("\nFin de l'affichage de la liste\n");
 
 }
-s_livre* recherche_par_num(LinkedList_biblio* B, int num){
+s_livre* recherche_par_num_list(LinkedList_biblio* B, int num){
     /*
         cette fonction permet de chercher un livre par son num
     */    
@@ -117,7 +115,7 @@ s_livre* recherche_par_num(LinkedList_biblio* B, int num){
 
     return NULL;
 }
-s_livre* recherche_par_titre(LinkedList_biblio* B, char* titre){/*
+s_livre* recherche_par_titre_list(LinkedList_biblio* B, char* titre){/*
         cette fonction permet de chercher un livre par son num
     */    
     if(!B){
@@ -139,7 +137,7 @@ s_livre* recherche_par_titre(LinkedList_biblio* B, char* titre){/*
     }
 
     return NULL;}
-s_livre* recherche_par_auteur(LinkedList_biblio* B, char* auteur){/*
+s_livre* recherche_par_auteur_list(LinkedList_biblio* B, char* auteur){/*
         cette fonction permet de chercher un livre par son num
     */    
     if(!B){
@@ -161,3 +159,19 @@ s_livre* recherche_par_auteur(LinkedList_biblio* B, char* auteur){/*
     }
 
     return NULL;}
+
+void supp_liste_rec(s_livre* t){
+  if(!t){
+    // liste vide on retourne
+    return;
+  }
+  free(t->suiv);
+  free(t);
+}
+
+void liberer_espace_list(LinkedList_biblio* B){
+  if(!B){
+    supp_liste_rec(B->head);
+    free(B);
+  }
+}

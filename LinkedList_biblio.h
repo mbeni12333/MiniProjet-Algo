@@ -15,13 +15,16 @@ int liste_vide(LinkedList_biblio* Biblio);
 
 LinkedList_biblio* initialise_biblio();
 
-void ajouter_elem(LinkedList_biblio* Biblio,
+void ajouter_elem_list(LinkedList_biblio* Biblio,
            int num,char* titre, char* auteur);
+void afficher_liste(LinkedList_biblio* B);
+void lecture_n_entree_liste(char* nomfic, int n, LinkedList_biblio *B);
 
-void lecture_n_entree(char* nomfic, int n, LinkedList_biblio *B);
+s_livre* recherche_par_num_list(LinkedList_biblio* B, int num);
+s_livre* recherche_par_titre_list(LinkedList_biblio* B, char* titre);
+s_livre* recherche_par_auteur_list(LinkedList_biblio* B, char* auteur);
 
-s_livre* recherche_par_num(LinkedList_biblio* B, int num);
-s_livre* recherche_par_titre(LinkedList_biblio* B, char* titre);
-s_livre* recherche_par_auteur(LinkedList_biblio* B, char* auteur);
 
+void supp_liste_rec(s_livre* t);
+void liberer_espace_list(LinkedList_biblio* B);
 #endif
