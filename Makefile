@@ -1,24 +1,25 @@
-CC = gcc
-CFLAGS = -W -Wall -g 
-EXEC=MiniProjet 
+EXEC=MiniProjet
 
-all: $(EXEC)
+SRC_PATH=src
+BUILD_PATH=build
+BIN_PATH= $(BUILD_PATH)/bin
 
-MiniProjet: LinkedList_biblio.o main.o entree_sortie.o structs.o Hashmap_biblio.o
-	gcc -o MiniProjet LinkedList_biblio.o main.o entree_sortie.o structs.o Hashmap_biblio.o $(CFLAGS) -lm
+SOURCES = $(shell find $(SRC_PATH) -name '*.c' | sort -k 1nr | cut -f2-)
+OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 
-main.o: main.c LinkedList_biblio.h entree_sortie.h structs.h Hashmap_biblio.h
-	gcc -o main.o -c main.c $(CFLAGS)
-Hashmap_biblio.o: Hashmap_biblio.c Hashmap_biblio.h LinkedList_biblio.h structs.h
-	gcc -o Hashmap_biblio.o -c Hashmap_biblio.c $(CFLAGS) 
-structs.o: structs.c structs.h
-	gcc -o structs.o -c structs.c $(CFLAGS)
+all: dirs $(EXEC)
 
-LinkedList_biblio.o: LinkedList_biblio.c structs.h
-	gcc -o LinkedList_biblio.o -c LinkedList_biblio.c $(CFLAGS)
+dirs:
+	@mkdir -p $(BUILD_PATH)
+	@mkdir -p $(BIN_PATH)
 
-entree_sortie.o: entree_sortie.c entree_sortie.h
-	gcc -o entree_sortie.o -c entree_sortie.c $(CFLAGS)
+MiniProjet: $(OBJECTS)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+$(BUILD_PATH)%.o: $(SRC_PATH)/%.c
+	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-	rm -rf *.o
+	@rm -rf $(BUILD_PATH)
+
+

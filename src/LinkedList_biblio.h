@@ -5,6 +5,10 @@
 #ifndef _LINKED_LIST_BIBLIO_H_
 #define _LINKED_LIST_BIBLIO_H_
 
+#define TITRE_MAX_LENGTH 30
+#define AUTEUR_MAX_LENGTH 30
+#define TMP_MAX_LENGTH 256
+
 
 typedef struct LinkedList_biblio{
   s_livre* head;// la tete 
